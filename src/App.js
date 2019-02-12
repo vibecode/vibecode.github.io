@@ -1,28 +1,45 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import styles from './App.module.scss'
+import { reactProjects, htmlProjects } from './constants/links'
 
 class App extends Component {
+  renderReactProjects() {
+    return reactProjects.map(({ name, link, repo }) => {
+      return (
+        <li key={name}>
+          <a href={link}>{name}</a>
+          <span> :: </span>
+          <a href={repo}>repo</a>
+        </li>
+      )
+    })
+  }
+
+  renderHtmlProjects() {
+    return htmlProjects.map(({ name, link, repo }) => {
+      return (
+        <li key={name}>
+          <a href={link}>{name}</a>
+          <span> :: </span>
+          <a href={repo}>repo</a>
+        </li>
+      )
+    })
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+      <main className="main">
+        <div className={styles.container}>
+          <h3>React projects:</h3>
+          <ul>{this.renderReactProjects()}</ul>
+
+          <h3>Html projects:</h3>
+          <ul>{this.renderHtmlProjects()}</ul>
+        </div>
+      </main>
+    )
   }
 }
 
-export default App;
+export default App
