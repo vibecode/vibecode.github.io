@@ -1,5 +1,10 @@
 export const reactProjects = [
   {
+    name: 'Online store feedback quize',
+    link: 'https://vibecode.github.io/react-feedback',
+    repo: 'https://github.com/vibecode/react-feedback'
+  },
+  {
     name: 'Pixel Expert Quize Game',
     link: 'https://pixel-expert.herokuapp.com',
     repo: 'https://github.com/vibecode/pixel-expert'
