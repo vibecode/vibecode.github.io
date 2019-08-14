@@ -9,8 +9,8 @@
   },
   "homepage": "https://vibecode.github.io",
   "devDependencies": {
-    "react-scripts": "2.1.5",
-    "gh-pages": "^2.0.1"
+    "gh-pages": "^2.0.1",
+    "react-scripts": "2.1.5"
   },
   "scripts": {
     "start": "react-scripts start",
