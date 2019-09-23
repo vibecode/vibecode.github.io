@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styles from './App.module.scss'
 import { reactProjects, htmlProjects } from './constants/links'
+import Blob from './Blob'
 
 class App extends Component {
   renderReactProjects() {
@@ -37,6 +38,7 @@ class App extends Component {
           <h3>Html projects:</h3>
           <ul>{this.renderHtmlProjects()}</ul>
         </div>
+        <Blob />
       </main>
     )
   }

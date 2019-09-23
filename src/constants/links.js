@@ -1,6 +1,6 @@
 export const reactProjects = [
   {
-    name: 'Online store feedback quize',
+    name: 'Online store feedback quize (Typeform template clone)',
     link: 'https://vibecode.github.io/react-feedback',
     repo: 'https://github.com/vibecode/react-feedback'
   },
@@ -18,6 +18,11 @@ export const reactProjects = [
     name: `Asana style kanban app with drag'n'drop feature`,
     link: 'https://vibecode.github.io/kanban-redux',
     repo: 'https://github.com/vibecode/kanban-redux'
+  },
+  {
+    name: `Simple snake game made with react and typescript`,
+    link: 'https://vibecode.github.io/snake-game',
+    repo: 'https://github.com/vibecode/snake-game'
   }
 ]
 
