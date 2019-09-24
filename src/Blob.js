@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
+import useEventListener from '@use-it/event-listener'
 import { TweenMax, Power1 } from 'gsap/TweenMax'
+import { debounce } from 'lodash'
 import * as THREE from 'three'
 import noise from './lib/perlin'
 import styles from './Blob.module.scss'
@@ -13,25 +15,26 @@ const DIRECTIONAL_LIGHT = 0x590d82
 
 const MESH_PHONG_MATHERIAL_EMISSIVE = 0x23f660
 
-export class Blob extends Component {
-  canvasRef = React.createRef()
+const Blob = () => {
+  const canvasRef = useRef(null)
+  const refs = useRef(null)
+  const [width, setWidth] = useState(0)
+  const height = 700
 
-  state = {
-    width: ''
-  }
+  useEffect(() => {
+    const canvas = canvasRef.current
+    const initialWidth = document.documentElement.clientWidth
+    const threeRefs = (refs.current = {})
 
-  componentDidMount() {
-    const canvas = this.canvasRef.current
-    let width = document.documentElement.clientWidth,
-      height = 700
-
-    const renderer = new THREE.WebGLRenderer({
+    threeRefs.renderer = new THREE.WebGLRenderer({
       canvas,
       antialias: true
     })
 
+    const { renderer } = threeRefs
+
     renderer.setPixelRatio(window.devicePixelRatio > 1 ? 2 : 1)
-    renderer.setSize(width, height)
+    renderer.setSize(initialWidth, height)
     renderer.setClearColor(CANVAS)
 
     const scene = new THREE.Scene()
@@ -44,8 +47,13 @@ export class Blob extends Component {
     // aspect — Camera frustum aspect ratio.
     // near — Camera frustum near plane.
     // far — Camera frustum far plane
-    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 10000)
-    camera.position.set(0, 0, 300)
+    threeRefs.camera = new THREE.PerspectiveCamera(
+      75,
+      initialWidth / height,
+      0.1,
+      10000
+    )
+    threeRefs.camera.position.set(0, 0, 300)
 
     //A light source positioned directly above the scene,
     //with color fading from the sky color to the ground color.
@@ -89,7 +97,9 @@ export class Blob extends Component {
     const shape = new THREE.Mesh(geometry, material)
     scene.add(shape)
 
-    function updateVertices(a) {
+    threeRefs.mouse = new THREE.Vector2(0.8, 0.5)
+
+    const updateVertices = a => {
       for (let i = 0; i < geometry.vertices.length; i++) {
         const vector = geometry.vertices[i]
         vector.copy(vector._o)
@@ -98,62 +108,52 @@ export class Blob extends Component {
           vector.y * 0.006 + a * 0.0003,
           vector.z * 0.006
         )
+        const { mouse } = threeRefs
         const ratio = perlin * 0.4 * (mouse.y + 0.1) + 0.8
         vector.multiplyScalar(ratio)
       }
       geometry.verticesNeedUpdate = true
     }
 
-    function render(a) {
+    const render = a => {
       requestAnimationFrame(render)
       updateVertices(a)
-      renderer.render(scene, camera)
+      renderer.render(scene, threeRefs.camera)
     }
 
-    const onResize = () => {
-      //   canvas.style.width = ''
-      //   canvas.style.height = ''
-      width = document.documentElement.clientWidth
-      this.setState({ width })
+    requestAnimationFrame(render)
+  }, [])
 
-      console.log('width: ', width)
-      console.log('height: ', height)
+  const onResize = () => {
+    const newWidth = document.documentElement.clientWidth
+    setWidth(newWidth)
+  }
 
+  const onMouseMove = e => {
+    const { mouse } = refs.current
+
+    TweenMax.to(mouse, 0.8, {
+      y: e.clientY / height,
+      x: e.clientX / width,
+      ease: Power1.easeOut
+    })
+  }
+
+  //update canvas on resize
+  useEffect(() => {
+    const { camera, renderer } = refs.current
+
+    if (width) {
       camera.aspect = width / height
       camera.updateProjectionMatrix()
       renderer.setSize(width, height)
     }
+  })
 
-    const mouse = new THREE.Vector2(0.8, 0.5)
+  useEventListener('mousemove', onMouseMove)
+  useEventListener('resize', debounce(onResize, 100))
 
-    function onMouseMove(e) {
-      TweenMax.to(mouse, 0.8, {
-        y: e.clientY / height,
-        x: e.clientX / width,
-        ease: Power1.easeOut
-      })
-    }
-
-    requestAnimationFrame(render)
-
-    window.addEventListener('mousemove', onMouseMove)
-
-    let resizeTm
-    window.addEventListener('resize', function() {
-      resizeTm = clearTimeout(resizeTm)
-      resizeTm = setTimeout(onResize, 100)
-    })
-  }
-
-  render() {
-    return (
-      <canvas
-        ref={this.canvasRef}
-        className={styles.canvas}
-        width={this.state.width}
-      ></canvas>
-    )
-  }
+  return <canvas ref={canvasRef} className={styles.canvas}></canvas>
 }
 
 export default Blob
