@@ -9,8 +9,12 @@ class App extends Component {
       return (
         <li key={name}>
           <a href={link}>{name}</a>
-          <span> :: </span>
-          <a href={repo}>repo</a>
+          {repo && (
+            <>
+              <span> :: </span>
+              <a href={repo}>repo</a>
+            </>
+          )}
         </li>
       )
     })
@@ -36,12 +40,13 @@ class App extends Component {
           <Blob />
         </div>
         <div className={styles.container}>
-          <p>
-            My name is Stanislav Ovcharov, I'm Javascript developer and
-            graphic/sound designer currently based in Amsterdam, Netherlands. I
-            love making good looking apps, especially with React and Node. Here
-            are some of the projects I've done which helped me to acquire the
-            knowlege about how things works in the modern web-development world:
+          <p className={styles.info}>
+            My name is <strong>Stanislav Ovcharov</strong>, I'm Javascript
+            developer and graphic/sound designer currently based in Amsterdam,
+            Netherlands. I love making good looking apps, especially with React
+            and Node. Here are some of the projects I've done which helped me to
+            acquire the knowlege about how things works in the modern
+            web-development world:
           </p>
           <h3>React projects:</h3>
           <ul>{this.renderReactProjects()}</ul>

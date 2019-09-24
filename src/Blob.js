@@ -23,7 +23,7 @@ export class Blob extends Component {
   componentDidMount() {
     const canvas = this.canvasRef.current
     let width = document.documentElement.clientWidth,
-      height = 600
+      height = 700
 
     const renderer = new THREE.WebGLRenderer({
       canvas,
@@ -146,7 +146,13 @@ export class Blob extends Component {
   }
 
   render() {
-    return <canvas ref={this.canvasRef} width={this.state.width}></canvas>
+    return (
+      <canvas
+        ref={this.canvasRef}
+        className={styles.canvas}
+        width={this.state.width}
+      ></canvas>
+    )
   }
 }
 

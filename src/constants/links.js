@@ -23,6 +23,10 @@ export const reactProjects = [
     name: `Simple snake game made with react and typescript`,
     link: 'https://vibecode.github.io/snake-game',
     repo: 'https://github.com/vibecode/snake-game'
+  },
+  {
+    name: 'This page source code',
+    link: 'https://github.com/vibecode/vibecode.github.io/tree/src'
   }
 ]
 
