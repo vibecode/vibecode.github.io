@@ -1,4 +1,27 @@
+.main {
+  width: 100%;
+}
+
 .container {
-  width: 960px;
+  max-width: 600px;
   margin: 0 auto;
+  padding: 16px;
+  text-align: center;
+
+  ul {
+    list-style: none;
+  }
+}
+
+.blob_container {
+  position: relative;
+}
+
+.hi {
+  position: absolute;
+  top: 40%;
+  left: calc(50% - 57px);
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  color: white;
+  font-size: 48px;
 }
