@@ -1,32 +1,25 @@
 import React, { Component } from 'react'
+import Collapse from './Collapse'
 import styles from './App.module.scss'
 import { reactProjects, htmlProjects } from './constants/links'
 import Blob from './Blob'
 
 class App extends Component {
-  renderReactProjects() {
-    return reactProjects.map(({ name, link, repo }) => {
+  renderProjects(projects) {
+    return projects.map(({ name, link, repo }) => {
       return (
         <li key={name}>
-          <a href={link}>{name}</a>
+          <a href={link} target="_blank" rel="noopener noreferrer">
+            {name}
+          </a>
           {repo && (
             <>
               <span> :: </span>
-              <a href={repo}>repo</a>
+              <a href={repo} target="_blank" rel="noopener noreferrer">
+                repo
+              </a>
             </>
           )}
-        </li>
-      )
-    })
-  }
-
-  renderHtmlProjects() {
-    return htmlProjects.map(({ name, link, repo }) => {
-      return (
-        <li key={name}>
-          <a href={link}>{name}</a>
-          <span> :: </span>
-          <a href={repo}>repo</a>
         </li>
       )
     })
@@ -48,12 +41,16 @@ class App extends Component {
             acquire the knowlege about how things works in the modern
             web-development world:
           </p>
-          <h3>React projects:</h3>
-          <ul>{this.renderReactProjects()}</ul>
-
-          <h3>Html projects:</h3>
-          <ul>{this.renderHtmlProjects()}</ul>
         </div>
+        <Collapse initOpen={false}>
+          <div className={styles.container_links}>
+            <h3>React projects:</h3>
+            <ul>{this.renderProjects(reactProjects)}</ul>
+
+            <h3>Html projects:</h3>
+            <ul>{this.renderProjects(htmlProjects)}</ul>
+          </div>
+        </Collapse>
       </main>
     )
   }

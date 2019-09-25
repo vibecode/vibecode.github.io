@@ -1,0 +1,22 @@
+.container {
+}
+
+.content {
+  box-shadow: inset -4px 16px 8px -17px rgba(0, 0, 0, 0.75),
+    inset -4px -16px 8px -17px rgba(0, 0, 0, 0.75);
+  padding: 20px 0;
+  height: 100%;
+  background-color: #fdfdfd;
+}
+
+.content_closed {
+  composes: content;
+  display: none;
+}
+
+.button {
+  display: block;
+  margin: 0 auto;
+
+  margin-bottom: 16px;
+}
