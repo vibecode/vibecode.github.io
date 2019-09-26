@@ -13,12 +13,11 @@ function App() {
             {name}
           </a>
           {repo && (
-            <>
-              <span> :: </span>
+            <div className={styles.repo_link_box}>
               <a href={repo} target="_blank" rel="noopener noreferrer">
                 repo
               </a>
-            </>
+            </div>
           )}
         </li>
       )
