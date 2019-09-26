@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import useEventListener from '@use-it/event-listener'
 import { useSpring, animated as a } from 'react-spring'
 import { throttle } from 'lodash'
@@ -12,6 +12,12 @@ const Collapse = ({ children, initOpen }) => {
     config: { duration: 1000 }
   })
   const animButton = useSpring({ opacity: show ? 0 : 1 })
+
+  useEffect(() => {
+    if (window.scrollY > 160) {
+      setShow(true)
+    }
+  }, [])
 
   const handleClick = () => {
     if (initOpen) {
