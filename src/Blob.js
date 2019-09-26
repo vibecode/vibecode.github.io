@@ -18,12 +18,23 @@ const MESH_PHONG_MATHERIAL_EMISSIVE = 0x23f660
 const Blob = () => {
   const canvasRef = useRef(null)
   const refs = useRef(null)
-  const [width, setWidth] = useState(0)
-  const height = 700
+
+  const [windowSize, setSize] = useState({})
+
+  const screenMeasure = () => {
+    const width = document.documentElement.clientWidth
+    const heightMeasure = document.documentElement.clientHeight / 1.6
+    const height = heightMeasure > 375 ? heightMeasure : 375
+
+    return [width, height]
+  }
 
   useEffect(() => {
     const canvas = canvasRef.current
-    const initialWidth = document.documentElement.clientWidth
+    const [width, height] = screenMeasure()
+
+    setSize({ width, height })
+
     const threeRefs = (refs.current = {})
 
     threeRefs.renderer = new THREE.WebGLRenderer({
@@ -33,8 +44,8 @@ const Blob = () => {
 
     const { renderer } = threeRefs
 
-    renderer.setPixelRatio(window.devicePixelRatio > 1 ? 2 : 1)
-    renderer.setSize(initialWidth, height)
+    // renderer.setPixelRatio(window.devicePixelRatio > 1 ? 2 : 1)
+    renderer.setSize(width, height)
     renderer.setClearColor(CANVAS)
 
     const scene = new THREE.Scene()
@@ -49,7 +60,7 @@ const Blob = () => {
     // far — Camera frustum far plane
     threeRefs.camera = new THREE.PerspectiveCamera(
       75,
-      initialWidth / height,
+      width / height,
       0.1,
       10000
     )
@@ -125,30 +136,32 @@ const Blob = () => {
   }, [])
 
   const onResize = () => {
-    const newWidth = document.documentElement.clientWidth
-    setWidth(newWidth)
+    const [width, height] = screenMeasure()
+
+    const { camera, renderer } = refs.current
+
+    camera.aspect = width / height
+    camera.updateProjectionMatrix()
+    renderer.setSize(width, height)
+
+    setSize({ width, height })
   }
 
   const onMouseMove = e => {
     const { mouse } = refs.current
 
+    const { width, height } = windowSize
+
+    if (!width || !height) {
+      return
+    }
+
     TweenMax.to(mouse, 0.8, {
-      y: e.clientY / height,
-      x: e.clientX / width,
+      y: e.clientY / width,
+      x: e.clientX / height,
       ease: Power1.easeOut
     })
   }
-
-  //update canvas on resize
-  useEffect(() => {
-    const { camera, renderer } = refs.current
-
-    if (width) {
-      camera.aspect = width / height
-      camera.updateProjectionMatrix()
-      renderer.setSize(width, height)
-    }
-  })
 
   useEventListener('mousemove', onMouseMove)
   useEventListener('resize', debounce(onResize, 100))

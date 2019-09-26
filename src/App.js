@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import Collapse from './Collapse'
+import React from 'react'
+import ShowContent from './ShowContent'
 import styles from './App.module.scss'
 import { reactProjects, htmlProjects } from './constants/links'
 import Blob from './Blob'
@@ -27,29 +27,31 @@ function App() {
 
   return (
     <main className={styles.main}>
-      <div className={styles.blob_container}>
-        <h1 className={styles.hi}>{'<Hi\u00A0/>'}</h1>
-        <Blob />
+      <div className={styles.top_container}>
+        <div className={styles.blob_container}>
+          <h1 className={styles.hi}>{'<Hi\u00A0/>'}</h1>
+          <Blob />
+        </div>
+        <div className={styles.container}>
+          <p className={styles.info}>
+            My name is <strong>Stanislav Ovcharov</strong>, I'm Javascript
+            developer and graphic/sound designer currently based in Amsterdam,
+            Netherlands. I love making good looking apps, especially with React
+            and Node. Here are some of the projects I've done which helped me to
+            acquire the knowlege about how things work in the modern
+            web-development world:
+          </p>
+        </div>
       </div>
-      <div className={styles.container}>
-        <p className={styles.info}>
-          My name is <strong>Stanislav Ovcharov</strong>, I'm Javascript
-          developer and graphic/sound designer currently based in Amsterdam,
-          Netherlands. I love making good looking apps, especially with React
-          and Node. Here are some of the projects I've done which helped me to
-          acquire the knowlege about how things works in the modern
-          web-development world:
-        </p>
-      </div>
-      <Collapse initOpen={false}>
+      <ShowContent initOpen={false}>
         <div className={styles.container_links}>
-          <h3>React projects:</h3>
+          <h2 className={styles.subtitle}>React projects:</h2>
           <ul>{renderProjects(reactProjects)}</ul>
 
-          <h3>Html projects:</h3>
+          <h2 className={styles.subtitle}>Html projects:</h2>
           <ul>{renderProjects(htmlProjects)}</ul>
         </div>
-      </Collapse>
+      </ShowContent>
     </main>
   )
 }
