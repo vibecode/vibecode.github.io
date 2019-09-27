@@ -1,0 +1,19 @@
+@import './Variables.module.scss';
+
+.container {
+  //   position: absolute;
+  //   z-index: 10000;
+  //   top: 60%;
+  //   left: calc(50% - 82px);
+  padding: 16px;
+}
+
+.icon {
+  margin-left: 12px;
+  transition: color 200ms;
+  color: $color-light-pink;
+}
+
+.icon:hover {
+  color: $color-siren;
+}

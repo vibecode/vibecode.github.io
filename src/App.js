@@ -1,5 +1,6 @@
 import React from 'react'
 import ShowContent from './ShowContent'
+import Social from './Social'
 import styles from './App.module.scss'
 import { reactProjects, htmlProjects } from './constants/links'
 import Blob from './Blob'
@@ -28,8 +29,11 @@ function App() {
     <main className={styles.main}>
       <div className={styles.top_container}>
         <div className={styles.blob_container}>
-          <h1 className={styles.hi}>{'<Hi\u00A0/>'}</h1>
           <Blob />
+          <div className={styles.hire_box}>
+            {/* <h1 className={styles.hi}>{'<HireMe\u00A0/>'}</h1> */}
+            <Social />
+          </div>
         </div>
         <div className={styles.container}>
           <p className={styles.info}>

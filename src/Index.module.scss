@@ -1,3 +1,5 @@
+@import './Variables.module.scss';
+
 html {
   box-sizing: border-box;
   width: 100%;
@@ -20,7 +22,7 @@ body {
     'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #5f5e5e;
+  color: $color-grey;
 }
 
 code {
