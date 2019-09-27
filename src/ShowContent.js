@@ -9,9 +9,12 @@ const Collapse = ({ children, initOpen }) => {
   const [show, setShow] = useState(initOpen)
   const animContent = useSpring({
     opacity: show ? 1 : 0,
-    config: { duration: 1000 }
+    config: { duration: 400 }
   })
-  const animButton = useSpring({ opacity: show ? 0 : 1 })
+  const animButton = useSpring({
+    opacity: show ? 0 : 1,
+    config: { duration: 400 }
+  })
 
   useEffect(() => {
     if (window.scrollY > 160) {
@@ -54,8 +57,9 @@ const Collapse = ({ children, initOpen }) => {
           style={animButton}
         ></a.button>
       )}
+
       <ScrollToView show={show}>
-        <a.div className={styles.content} style={animContent}>
+        <a.div className={show ? '' : styles.hidden} style={animContent}>
           {children}
         </a.div>
       </ScrollToView>

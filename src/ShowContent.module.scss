@@ -2,11 +2,6 @@
   margin-bottom: 20px;
 }
 
-.content {
-  padding: 20px 0;
-  background-color: #fdfdfd;
-}
-
 .scroll_down {
   display: block;
   position: relative;
@@ -33,6 +28,10 @@
   top: 0;
   left: calc(50% - 10px);
   transform: rotate(-45deg);
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 @keyframes bounce {

@@ -35,19 +35,19 @@ function App() {
           <p className={styles.info}>
             My name is <strong>Stanislav Ovcharov</strong>, I'm Javascript
             developer and graphic/sound designer currently based in Amsterdam,
-            Netherlands. I love making good looking apps, especially with React
-            and Node. Here are some of the projects I've done which helped me to
-            acquire the knowlege about how things work in the modern
-            web-development world:
+            Netherlands. I love making good looking apps, especially with{' '}
+            <strong>React</strong> and <strong>Node</strong>. Here are some of
+            the projects I've done which helped me to acquire the knowlege about
+            how things work in the modern web-development world:
           </p>
         </div>
       </div>
       <ShowContent initOpen={false}>
         <div className={styles.container_links}>
-          <h2 className={styles.subtitle}>React projects:</h2>
+          <h2 className={styles.subtitle}>React projects</h2>
           <ul>{renderProjects(reactProjects)}</ul>
 
-          <h2 className={styles.subtitle}>Html projects:</h2>
+          <h2 className={styles.subtitle}>Html projects</h2>
           <ul>{renderProjects(htmlProjects)}</ul>
         </div>
       </ShowContent>
