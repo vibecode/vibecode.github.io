@@ -2,10 +2,8 @@ import React from 'react'
 import styles from './Social.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTelegram, faGithub } from '@fortawesome/free-brands-svg-icons'
-import { faEnvelope, faFileExcel } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import Tilt from 'react-tilt'
-import { isAbsolute } from 'path'
-import { callbackify } from 'util'
 
 function Social() {
   return (
