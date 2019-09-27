@@ -37,7 +37,7 @@ function App() {
         </div>
         <div className={styles.container}>
           <p className={styles.info}>
-            My name is <strong>Stanislav Ovcharov</strong>, I'm Javascript
+            Hi, my name is <strong>Stanislav Ovcharov</strong>, I'm a Javascript
             developer and graphic/sound designer currently based in Amsterdam,
             Netherlands. I love making good looking apps, especially with{' '}
             <strong>React</strong> and <strong>Node</strong>. Here are some of
