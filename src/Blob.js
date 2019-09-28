@@ -165,8 +165,16 @@ const Blob = () => {
 
   useEventListener('mousemove', onMouseMove)
   useEventListener('resize', debounce(onResize, 100))
-
-  return <canvas ref={canvasRef} className={styles.canvas}></canvas>
+  return (
+    <canvas
+      ref={canvasRef}
+      className={styles.canvas}
+      style={{
+        minHeight: '375px',
+        height: '62.5vh'
+      }}
+    ></canvas>
+  )
 }
 
 export default Blob
