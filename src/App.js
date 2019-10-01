@@ -1,17 +1,21 @@
 import React, { useState } from 'react'
 import Switch from './Switch'
 import { ThemeContext } from './themeContext'
+import { setLocalStorage, getLocalStorage } from './localStorage'
 import Page from './Page'
 
 function App() {
-  const [theme, setTheme] = useState('light')
+  const initTheme = getLocalStorage()
+  const [theme, setTheme] = useState(initTheme)
 
   const handleSetTheme = checked => {
-    setTheme(checked ? 'dark' : 'light')
+    const theme = checked ? 'dark' : 'light'
+    setTheme(theme)
+    setLocalStorage(theme)
   }
   return (
     <ThemeContext.Provider value={theme}>
-      <Switch onChange={handleSetTheme} />
+      <Switch onChange={handleSetTheme} checked={theme === 'dark'} />
       <Page />
     </ThemeContext.Provider>
   )

@@ -1,5 +1,7 @@
-$color-siren: #b5aefa;
+$color-siren: #c4beff;
 $color-light-pink: #fef8ff;
+$color-light-blue: #bedae2;
+$color-dark-pink: darken($color-light-pink, 5%);
 $color-grey: #5f5e5e;
 $color-background-dark: #1e2126;
-$color-grey-light: lighten($color-grey, 5%);
+$color-grey-light: lighten($color-grey, 20%);

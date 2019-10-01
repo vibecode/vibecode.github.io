@@ -4,7 +4,6 @@ import { TweenMax, Power1 } from 'gsap/TweenMax'
 import { debounce } from 'lodash'
 import * as THREE from 'three'
 import noise from './lib/perlin'
-import styles from './Blob.module.scss'
 import { ThemeContext } from './themeContext'
 
 //COLORS
@@ -177,7 +176,6 @@ const Blob = () => {
   return (
     <canvas
       ref={canvasRef}
-      className={styles.canvas}
       style={{
         minHeight: '375px',
         height: '62.5vh',
