@@ -1,13 +1,15 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState, useContext } from 'react'
 import useEventListener from '@use-it/event-listener'
 import { TweenMax, Power1 } from 'gsap/TweenMax'
 import { debounce } from 'lodash'
 import * as THREE from 'three'
 import noise from './lib/perlin'
 import styles from './Blob.module.scss'
+import { ThemeContext } from './themeContext'
 
 //COLORS
-const CANVAS = 0xffffff
+const CANVAS_LIGHT = 0xffffff
+const CANVAS_DARK = 0x1e2126
 
 const HEMISPHERE_LIGHT_SKY = 0xfdbcfe
 const HEMISPHERE_LIGHT_GROUND = 0xb465e9
@@ -18,7 +20,7 @@ const MESH_PHONG_MATHERIAL_EMISSIVE = 0x23f660
 const Blob = () => {
   const canvasRef = useRef(null)
   const refs = useRef(null)
-
+  const theme = useContext(ThemeContext)
   const [windowSize, setSize] = useState({})
 
   const screenMeasure = () => {
@@ -46,7 +48,7 @@ const Blob = () => {
 
     // renderer.setPixelRatio(window.devicePixelRatio > 1 ? 2 : 1)
     renderer.setSize(width, height)
-    renderer.setClearColor(CANVAS)
+    renderer.setClearColor(theme === 'light' ? CANVAS_LIGHT : CANVAS_DARK)
 
     const scene = new THREE.Scene()
 
@@ -126,14 +128,20 @@ const Blob = () => {
       geometry.verticesNeedUpdate = true
     }
 
+    let RAF_ID_RECURSIVE
     const render = a => {
-      requestAnimationFrame(render)
+      RAF_ID_RECURSIVE = window.requestAnimationFrame(render)
       updateVertices(a)
       renderer.render(scene, threeRefs.camera)
     }
 
-    requestAnimationFrame(render)
-  }, [])
+    const RAF_ID = window.requestAnimationFrame(render)
+
+    return () => {
+      window.cancelAnimationFrame(RAF_ID_RECURSIVE)
+      window.cancelAnimationFrame(RAF_ID)
+    }
+  }, [theme])
 
   const onResize = () => {
     const [width, height] = screenMeasure()
@@ -165,13 +173,15 @@ const Blob = () => {
 
   useEventListener('mousemove', onMouseMove)
   useEventListener('resize', debounce(onResize, 100))
+
   return (
     <canvas
       ref={canvasRef}
       className={styles.canvas}
       style={{
         minHeight: '375px',
-        height: '62.5vh'
+        height: '62.5vh',
+        backgroundColor: theme === 'light' ? 'transparent' : '#1e2126'
       }}
     ></canvas>
   )
