@@ -5,7 +5,7 @@ import { setLocalStorage, getLocalStorage } from './localStorage'
 import Page from './Page'
 
 function App() {
-  const initTheme = getLocalStorage()
+  const initTheme = getLocalStorage() || 'dark'
   const [theme, setTheme] = useState(initTheme)
 
   const handleSetTheme = checked => {

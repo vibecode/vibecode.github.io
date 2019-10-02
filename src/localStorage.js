@@ -8,9 +8,7 @@ export const setLocalStorage = theme => {
 
 export const getLocalStorage = () => {
   try {
-    const theme = localStorage.getItem('theme')
-
-    return theme || 'light'
+    return localStorage.getItem('theme')
   } catch (err) {
     console.log(err)
   }
