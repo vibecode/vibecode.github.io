@@ -17,3 +17,10 @@
 .icon:hover {
   color: $color-siren;
 }
+.tilt {
+  height: 180px;
+  width: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

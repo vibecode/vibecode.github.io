@@ -179,7 +179,10 @@ const Blob = () => {
       style={{
         minHeight: '375px',
         height: '62.5vh',
-        backgroundColor: theme === 'light' ? 'transparent' : '#1e2126'
+        backgroundColor: theme === 'light' ? 'transparent' : '#1e2126',
+
+        //fixes clipping issue with react-tilt in Safari
+        transform: 'translateZ(-100px)'
       }}
     ></canvas>
   )

@@ -8,15 +8,8 @@ import Tilt from 'react-tilt'
 function Social() {
   return (
     <Tilt
-      className="Tilt"
+      className={styles.tilt}
       options={{ max: 35, scale: 1, perspective: 500 }}
-      style={{
-        height: 180,
-        width: 180,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}
     >
       <div className={styles.container}>
         <a href="mailto:stanis.ovcharov@gmail.com">
