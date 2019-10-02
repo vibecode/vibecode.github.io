@@ -81,21 +81,12 @@
 .info {
   margin: 0px;
   font-family: Roboto, Helvetica, sans-serif;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.4;
-
-  @media screen and (max-height: 640px), screen and (max-width: 375px) {
-    margin-top: -80px;
-    font-size: 16px;
-  }
-
-  @media screen and (max-width: 420px) {
-    text-align: justify;
-  }
 }
 
 .subtitle {
-  font-size: 20px;
+  font-size: 22px;
   font-family: Roboto, Helvetica, sans-serif;
   font-weight: normal;
   margin: 0;
@@ -107,6 +98,20 @@
   margin-top: 0px;
 }
 
-// .repo_link_box {
-//   border-top: 1px dotted grey;
-// }
+@media screen and (max-width: 420px) {
+  .info {
+    font-size: 18px;
+    text-align: justify;
+  }
+}
+
+@media screen and (max-height: 640px), screen and (max-width: 375px) {
+  .info {
+    margin-top: -80px;
+    font-size: 16px;
+  }
+
+  .subtitle {
+    font-size: 20px;
+  }
+}
