@@ -4,6 +4,8 @@ import Social from './Social'
 import { reactProjects, htmlProjects } from './constants/links'
 import Blob from './Blob'
 import { ThemeContext } from './themeContext'
+import { useSpring, animated as a } from 'react-spring'
+
 import styles from './Page.module.scss'
 
 function Page(props) {
@@ -28,15 +30,24 @@ function Page(props) {
     })
   }
 
+  const appear = useSpring({
+    opacity: 1,
+    from: { opacity: 0 },
+    delay: 200,
+    config: {
+      duration: 3000
+    }
+  })
+
   return (
     <main className={theme === 'dark' ? styles.main_dark : styles.main}>
       <div className={styles.top_container}>
-        <div className={styles.blob_container}>
+        <a.div className={styles.blob_container} style={appear}>
           <Blob />
           <div className={styles.hire_box}>
             <Social />
           </div>
-        </div>
+        </a.div>
         <div className={styles.container}>
           <p className={styles.info}>
             Hi, my name is <strong>Stanislav Ovcharov</strong>, I'm a Javascript

@@ -1,0 +1,28 @@
+.loader_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 375px;
+  width: 100%;
+  height: 62.5vh;
+  position: absolute;
+  z-index: 999999;
+  transition: all 800 ease;
+}
+
+.blob {
+  min-width: 200px;
+  min-height: 200px;
+
+  width: 20%;
+  padding-top: 20%;
+  background: #ffe7ff; /* Old browsers */
+  background: linear-gradient(135deg, #ffe7ff 0%, #c3cefc 48%, #a8c8ce 100%);
+  border-radius: 50%;
+  filter: blur(12px);
+
+  span {
+    color: black;
+    font-size: 54;
+  }
+}

@@ -174,17 +174,20 @@ const Blob = () => {
   useEventListener('resize', debounce(onResize, 100))
 
   return (
-    <canvas
-      ref={canvasRef}
-      style={{
-        minHeight: '375px',
-        height: '62.5vh',
-        backgroundColor: theme === 'light' ? 'transparent' : '#1e2126',
+    <>
+      {/* <Loader /> */}
+      <canvas
+        ref={canvasRef}
+        style={{
+          minHeight: '375px',
+          height: '62.5vh',
+          backgroundColor: theme === 'light' ? 'transparent' : '#1e2126',
 
-        //fixes clipping issue with react-tilt in Safari
-        transform: 'translateZ(-100px)'
-      }}
-    ></canvas>
+          //fixes clipping issue with react-tilt in Safari
+          transform: 'translateZ(-100px)'
+        }}
+      ></canvas>
+    </>
   )
 }
 
