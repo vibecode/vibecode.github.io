@@ -33,9 +33,9 @@ function Page(props) {
   const appear = useSpring({
     opacity: 1,
     from: { opacity: 0 },
-    delay: 200,
+    delay: 1000,
     config: {
-      duration: 3000
+      duration: 3500
     }
   })
 
