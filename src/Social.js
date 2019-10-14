@@ -15,9 +15,7 @@ function Social() {
       options={{ max: 35, scale: 1, perspective: 500 }}
     >
       <div
-        className={
-          theme === 'dark' ? styles.container : styles.container_light
-        }
+        className={theme === 'dark' ? styles.container : styles.container_light}
       >
         <a href="mailto:stanis.ovcharov@gmail.com">
           <FontAwesomeIcon
