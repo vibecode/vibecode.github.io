@@ -42,12 +42,14 @@ function Page(props) {
   return (
     <main className={theme === 'dark' ? styles.main_dark : styles.main}>
       <div className={styles.top_container}>
-        <a.div className={styles.blob_container} style={appear}>
-          <Blob />
+        <div className={styles.blob_container}>
+          <a.div style={appear}>
+            <Blob />
+          </a.div>
           <div className={styles.hire_box}>
             <Social />
           </div>
-        </a.div>
+        </div>
         <div className={styles.container}>
           <p className={styles.info}>
             Hi, my name is <strong>Stanislav Ovcharov</strong>, I'm a Javascript
