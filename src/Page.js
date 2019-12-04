@@ -12,7 +12,7 @@ function Page(props) {
   const theme = useContext(ThemeContext)
 
   const renderProjects = projects => {
-    return projects.map(({ name, link, repo }) => {
+    return projects.map(({ name, link, repo, desc }) => {
       return (
         <li key={name}>
           <a href={link} target="_blank" rel="noopener noreferrer">
@@ -25,6 +25,7 @@ function Page(props) {
               </a>
             </div>
           )}
+          <p>{desc}</p>
         </li>
       )
     })
@@ -56,17 +57,44 @@ function Page(props) {
             developer and graphic/sound designer currently based in Amsterdam,
             Netherlands. I love making good looking apps, especially with{' '}
             <strong>React</strong> and <strong>Node</strong>. Here are some of
-            the projects I've done which helped me to acquire the knowlege about
-            how things work in the modern web-development world:
+            the projects I've done using ES6, Typescript, React, Redux, GraphQL,
+            Node, Express, Mongo and other modern technologies.
           </p>
         </div>
       </div>
       <ShowContent initOpen={false}>
         <div className={styles.container_links}>
-          <h2 className={styles.subtitle}>React projects</h2>
+          {/* <h2 className={styles.subtitle}>React projects:</h2> */}
+          <div className={styles.feature}>
+            <a
+              className={styles.feature_link_title}
+              href="https://audiodrillz.app/"
+            >
+              Audiodrillz
+            </a>
+
+            {/* <a href="https://audiodrillz.app/">
+              <div className={styles.feature_preview}>
+                <img
+                  src="https://www.audiodrillz.app/og_poster_1200x630.jpg"
+                  alt="audiodrillz thumbnail"
+                />
+              </div>
+            </a> */}
+
+            <p>
+              Audiodrillz is an ear training web application for sound
+              producers, audio engineers, musicians, DJs and anyone who wants to
+              improve their listening skills. This is my latest and biggest
+              project so far which I build from scratch (both frontend and
+              backend). It was made with React, Redux, GraphQL, Node, Express
+              and MongoDB.
+            </p>
+          </div>
+
           <ul>{renderProjects(reactProjects)}</ul>
 
-          <h2 className={styles.subtitle}>Html projects</h2>
+          {/* <h2 className={styles.subtitle}>Html projects:</h2> */}
           <ul>{renderProjects(htmlProjects)}</ul>
         </div>
       </ShowContent>

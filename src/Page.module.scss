@@ -14,10 +14,34 @@
   li {
     margin: 0;
     margin-bottom: 12px;
+
+    p {
+      font-size: 14px;
+      margin-top: 6px;
+      margin-bottom: 32px;
+      // max-width: 200px;
+    }
   }
 
   a {
     font-size: 14px;
+  }
+}
+.feature {
+  margin-bottom: 32px;
+
+  .feature_link_title {
+    display: block;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  p {
+    // text-align: left;
+    font-size: 14px;
+    margin: 4px 0;
   }
 }
 
@@ -48,7 +72,7 @@
 .container {
   position: relative;
   z-index: 999;
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 0 16px;
   text-align: center;
@@ -95,6 +119,7 @@
 
 .container_links {
   composes: container;
+  max-width: 600px;
   margin-top: 0px;
 }
 
