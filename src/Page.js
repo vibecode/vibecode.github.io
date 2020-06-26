@@ -11,7 +11,7 @@ import styles from './Page.module.scss'
 function Page(props) {
   const theme = useContext(ThemeContext)
 
-  const renderProjects = projects => {
+  const renderProjects = (projects) => {
     return projects.map(({ name, link, repo, desc }) => {
       return (
         <li key={name}>
@@ -36,8 +36,8 @@ function Page(props) {
     from: { opacity: 0 },
     delay: 1000,
     config: {
-      duration: 3500
-    }
+      duration: 3500,
+    },
   })
 
   return (
@@ -51,7 +51,7 @@ function Page(props) {
             <Social />
           </div>
         </div>
-        <div className={styles.container}>
+        {/* <div className={styles.container}>
           <p className={styles.info}>
             Hi, my name is <strong>Stanislav Ovcharov</strong>, I'm a Javascript
             developer and graphic/sound designer currently based in Amsterdam,
@@ -60,7 +60,7 @@ function Page(props) {
             the projects I've done using ES6, Typescript, React, Redux, GraphQL,
             Node, Express, Mongo and other modern technologies.
           </p>
-        </div>
+        </div> */}
       </div>
       <ShowContent initOpen={false}>
         <div className={styles.container_links}>
@@ -82,14 +82,14 @@ function Page(props) {
               </div>
             </a> */}
 
-            <p>
+            {/* <p>
               Audiodrillz is an ear training web application for sound
               producers, audio engineers, musicians, DJs and anyone who wants to
               improve their listening skills. This is my latest and biggest
               project so far which I build from scratch (both frontend and
               backend). It was made with React, Redux, GraphQL, Node, Express
               and MongoDB.
-            </p>
+            </p> */}
           </div>
 
           <ul>{renderProjects(reactProjects)}</ul>
